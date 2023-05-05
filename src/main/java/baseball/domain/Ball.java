@@ -16,7 +16,7 @@ public class Ball {
     }
 
     public BallStatus compare(Ball userBall) {
-        if (isStrike(userBall)) {
+        if (equals(userBall)) {
             return BallStatus.STRIKE;
         }
 
@@ -26,11 +26,16 @@ public class Ball {
         return BallStatus.NOTHING;
     }
 
-    private boolean isStrike(Ball userBall) {
-        return this.index == userBall.index && this.number == userBall.number;
-    }
-
     private boolean isBall(Ball userBall) {
         return this.index != userBall.index && this.number == userBall.number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ball ball = (Ball) o;
+        return this.index == ball.index && this.number == ball.number;
     }
 }
